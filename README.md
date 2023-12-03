@@ -1,3 +1,3 @@
 A headless, robust React notification library.
 
-<video src='./recording.mkv'></video>
+<video src='https://github.com/hahanein/melden/raw/main/recording.mkv'></video>
