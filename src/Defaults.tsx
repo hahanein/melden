@@ -43,7 +43,7 @@ const style = (
 );
 
 /** The default notification list. */
-const Default: FC<PropsWithChildren> = (props) => (
+const NotificationRegion: FC<PropsWithChildren> = (props) => (
 	<>
 		{style}
 		<div
@@ -57,14 +57,14 @@ const Default: FC<PropsWithChildren> = (props) => (
 	</>
 );
 
-const itemAnimationProps: AnimationProps = {
+const notificationAnimationProps: AnimationProps = {
 	initial: {x: 360},
 	animate: {x: 0},
 	exit: {x: 360},
 };
 
 /** The default notification. */
-const Item: FC<PropsWithChildren> = forwardRef<
+const Notification: FC<PropsWithChildren> = forwardRef<
 	HTMLDivElement,
 	PropsWithChildren
 >((props, ref) => {
@@ -84,7 +84,7 @@ const Item: FC<PropsWithChildren> = forwardRef<
 			role="alert"
 			aria-labelledby={messageId}
 			className="item-361"
-			{...itemAnimationProps}
+			{...notificationAnimationProps}
 		>
 			<div id={messageId} className="message-361">
 				{props.children}
@@ -102,6 +102,6 @@ const Item: FC<PropsWithChildren> = forwardRef<
 	);
 });
 
-Item.displayName = "Item";
+Notification.displayName = "Notification";
 
-export default Object.assign(Default, {Item});
+export {NotificationRegion, Notification};

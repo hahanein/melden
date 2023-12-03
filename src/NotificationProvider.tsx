@@ -14,17 +14,34 @@ import useEffectOnce from "./useEffectOnce.ts";
 
 const context = createContext<NotificationContext | null>(null);
 
+/** Settings and procedures required for integrating notifications. */
 interface NotificationContext {
+	/** Procedure to be called when the notification unmounts. */
 	onUnmount: VoidFunction;
-	timeout?: number | undefined;
+	/**
+	 * Duration in milliseconds after which the notification will automatically
+	 * be destroyed.
+	 */
+	timeout?: number;
+	/** Procedure to be called when the timeout has been reached. */
 	onTimeout: VoidFunction;
+	/**
+	 * Procedure to be called when the user has requested to close the
+	 * notification.
+	 */
 	onPressClose: VoidFunction;
 }
 
+/** Props to be provided to every {@link NotificationProvider}. */
 interface NotificationProviderProps extends NotificationContext {
+	/** A user-defined component for presenting notifications. */
 	Component: FC<PropsWithChildren & RefAttributes<unknown>>;
 }
 
+/**
+ * Provides user-defined notifications with the required information and
+ * functionality to manage and monitor the life-cycle of a notification.
+ */
 const NotificationProvider = forwardRef<
 	unknown,
 	PropsWithChildren<NotificationProviderProps>
@@ -41,6 +58,15 @@ const NotificationProvider = forwardRef<
 	</context.Provider>
 ));
 
+/**
+ * A hook with which notification components may be built that will integrate
+ * with our system.
+ *
+ * @param onProgress - A procedure with which you may monitor the progress of
+ *   the timeout after which the notification will automatically be destroyed
+ * @returns Information and functionality with which notification components may
+ *   be enriched
+ */
 export function useNotification(onProgress: (time: number) => void): {
 	timeout?: number | undefined;
 	onPressClose: VoidFunction;
