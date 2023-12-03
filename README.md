@@ -1,3 +1,4 @@
-A headless, robust React notification library.
+Robust headless React notifications.
 
-<video src='https://github.com/hahanein/melden/raw/main/recording.mp4'></video>
+https://github.com/hahanein/melden/assets/12881680/8f1a9426-a1d8-4975-8b0b-60ecf2514222
+
